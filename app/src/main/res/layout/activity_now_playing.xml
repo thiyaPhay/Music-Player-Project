@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#0A0A0A"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <!-- Back Button -->
+
+    <!-- Now Playing Title -->
+
+    <!-- Song Cover -->
+
+    <ImageButton
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/baseline_arrow_back_ios_24"
+        android:tint="@android:color/white" />
+
+    <TextView
+        android:id="@+id/nowPlaying"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/backBtn"
+        android:layout_marginTop="85dp"
+        android:text="@string/now_playing"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/songCover"
+        android:layout_width="255dp"
+        android:layout_height="240dp"
+        android:layout_below="@id/nowPlaying"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="65dp"
+        android:src="@drawable/vannda" />
+
+    <!-- Song Name -->
+    <TextView
+        android:id="@+id/songTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VannDa"
+        android:textColor="@android:color/white"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_below="@id/songCover"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Subtitle -->
+    <TextView
+        android:id="@+id/subTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VANNDA - U KNOW U KNOW"
+        android:textColor="#888888"
+        android:textSize="14sp"
+        android:layout_below="@id/songTitle"
+        android:layout_centerHorizontal="true"/>
+
+    <!-- Like Button -->
+    <ImageButton
+        android:id="@+id/likeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_favorite_border_24"
+        android:background="@android:color/transparent"
+        android:tint="@android:color/white"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="30dp"
+        android:layout_alignTop="@id/songTitle" />
+
+    <!-- SeekBar -->
+
+    <!-- Control Buttons -->
+
+    <SeekBar
+        android:id="@+id/musicSeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/subTitle"
+        android:layout_marginTop="24dp"
+        android:progress="30"
+        android:progressTint="#FF0050"
+        android:thumbTint="#FF0050" />
+
+    <LinearLayout
+        android:id="@+id/controlPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/musicSeekBar"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <ImageButton
+            android:id="@+id/shareBtn"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/baseline_playlist_play_24"
+            android:tint="@android:color/white"/>
+
+        <ImageButton
+            android:id="@+id/playPauseBtn"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="2"
+            android:background="@android:color/transparent"
+            android:src="@drawable/baseline_pause_circle_filled_24"
+            android:tint="@android:color/white" />
+
+        <ImageButton
+            android:id="@+id/playlistBtn"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:src="@drawable/rounded_autoplay_24"
+            android:background="@android:color/transparent"
+            android:tint="@android:color/white"/>
+    </LinearLayout>
+
+</RelativeLayout>
