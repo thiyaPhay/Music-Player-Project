@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class NowPlayingActivity extends AppCompatActivity {
 
     private ImageButton backBtn, likeBtn, playPauseBtn, shareBtn, playlistBtn;
-    private TextView nowPlaying, songTitle, subTitle;
+    private TextView     nowPlaying, songTitle, subTitle;
     private ImageView songCover;
     private SeekBar musicSeekBar;
 
