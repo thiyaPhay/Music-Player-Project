@@ -1,7 +1,4 @@
 <resources>
     <string name="app_name">Music-Player-Project</string>
-<<<<<<< HEAD
     <string name="now_playing">Now Playing</string>
-=======
->>>>>>> 8b1529fb4bc02bc423ae0a8cacf7be4ccbb5b333
 </resources>
