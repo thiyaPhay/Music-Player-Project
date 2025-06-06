@@ -1,18 +1,21 @@
 package com.cscorner.music_player_project;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.view.View;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class NowPlayingActivity extends AppCompatActivity {
 
     private ImageButton backBtn, likeBtn, playPauseBtn, shareBtn, playlistBtn;
-    private TextView     nowPlaying, songTitle, subTitle;
+    private TextView nowPlaying, songTitle, subTitle;
     private ImageView songCover;
     private SeekBar musicSeekBar;
 
@@ -48,7 +51,7 @@ public class NowPlayingActivity extends AppCompatActivity {
         playPauseBtn.setOnClickListener(v -> {
             if (isPlaying) {
                 mediaPlayer.pause();
-                playPauseBtn.setImageResource(R.drawable.baseline_pause_circle_filled_24);
+                playPauseBtn.setImageResource(R.drawable.play);
             } else {
                 mediaPlayer.start();
                 playPauseBtn.setImageResource(R.drawable.baseline_pause_circle_filled_24);
@@ -68,15 +71,37 @@ public class NowPlayingActivity extends AppCompatActivity {
     }
 
     private void setupMediaPlayer() {
-        mediaPlayer = MediaPlayer.create(this, R.raw.sample_music_2); // Replace with your music file
+        Intent intent = getIntent();
+        int songResId = intent.getIntExtra("song_res_id", -1);
+        String title = intent.getStringExtra("song_title");
+        String subtitle = intent.getStringExtra("song_subtitle");
+        int imageResId = intent.getIntExtra("song_image_id", -1);
+
+        if (songResId != -1) {
+            mediaPlayer = MediaPlayer.create(this, songResId);
+            songTitle.setText(title != null ? title : "Unknown Title");
+            subTitle.setText(subtitle != null ? subtitle : "Unknown Artist");
+            if (imageResId != -1) {
+                songCover.setImageResource(imageResId); // NEW: Set the song cover image
+            } else {
+                songCover.setImageDrawable(null); // Optional: fallback image
+            }
+            mediaPlayer.start();
+            isPlaying = true; // Ensure the play/pause state is correct
+            playPauseBtn.setImageResource(R.drawable.baseline_pause_circle_filled_24);
+        } else {
+            Toast.makeText(this, "Error loading song", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
         musicSeekBar.setMax(mediaPlayer.getDuration());
 
-        // Optional: update SeekBar while playing
         new Thread(() -> {
             while (mediaPlayer != null) {
                 try {
                     if (mediaPlayer.isPlaying()) {
-                        musicSeekBar.setProgress(mediaPlayer.getCurrentPosition());
+                        runOnUiThread(() -> musicSeekBar.setProgress(mediaPlayer.getCurrentPosition()));
                     }
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
